@@ -13,5 +13,7 @@ steps:
       - npm test
 
 trigger:
+  branch:
+    - master
   event:
     - push
