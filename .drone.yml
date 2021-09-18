@@ -1,0 +1,19 @@
+kind: pipeline
+name: "Push on master"
+
+concurrency:
+	limit: 2
+	
+steps:
+
+	- name: "Test & Build"
+	  image: node:10.11
+	  command:
+		- npm install
+		- npm test
+		
+trigger:
+	branch:
+	- master
+	event:
+	- push
