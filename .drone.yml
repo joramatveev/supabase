@@ -3,7 +3,7 @@ name: "Push on master"
 
 concurrency:
     limit: 2
-	
+
 steps:
 
     name: "Test & Build"
@@ -11,7 +11,7 @@ steps:
     command:
         - npm install
         - npm test
-		
+
 trigger:
     event:
         - push
