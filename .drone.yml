@@ -6,11 +6,11 @@ concurrency:
 
 steps:
 
-  name: "Test & Build"
-  image: "node:10.11"
-  command:
-    - npm install
-    - npm test
+  - name: "Test & Build"
+    image: "node:10.11"
+    command:
+      - npm install
+      - npm test
 
 trigger:
   event:
