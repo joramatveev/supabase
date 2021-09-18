@@ -3,8 +3,6 @@ import { supabase } from '../utils/supabaseClient'
 import Auth from '../components/Auth'
 import Account from '../components/Account'
 
-import '../styles/globals.css'
-
 export default function Home() {
   const [session, setSession] = useState(null)
 
