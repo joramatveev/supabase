@@ -31,7 +31,6 @@ steps:
 image_pull_secrets: 
  - dockerconfigjson
  
-
 trigger:
   branches:
     - master
