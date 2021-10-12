@@ -1,19 +1,39 @@
+---
 kind: pipeline
-name: "Push on master"
+type: docker
+name: "Staging: Build & push docker image on production"
 
-concurrency:
-  limit: 2
+clone:
+  depth: 1
 
 steps:
+- name: "Build & Test frontend"
+  image: "node:alpine"  
+  commands:
+  - yarn install
+  - yarn lint
+  
+- name: "Build & Push docker image"
+  image: plugins/docker 
+  settings:
+    auto_tag: true
+    skip_tls_verify: true     
+    repo: joramatveev/supabase
+    registry: docker.io
+    dockerfile: ./Dockerfile      
+    tags:
+      - ${DRONE_COMMIT:0:7}
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
 
-  - name: "Test & Build"
-    image: "node:10.11"
-    command:
-      - npm install
-      - npm test
+image_pull_secrets: 
+ - dockerconfigjson
+ 
 
 trigger:
-  branch:
+  branches:
     - master
   event:
     - push
